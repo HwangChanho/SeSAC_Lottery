@@ -28,27 +28,23 @@ class ViewController: UIViewController {
     var latestRound = 0
     var selectRow = 0
     
-    var lottory: Lotto = .init()
+    // var lottory: Lotto = .init()
     var pickerViewArray: [Int] = []
+    
+    let userDefaults = UserDefaultsManager.shared
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        userDefaults.load(roundNum: 987)
+        latestRound = userDefaults.lotto.latestRound
+        print("DB Round : \(userDefaults.lotto.latestRound), \(userDefaults.lotto)")
 
         pickerView.delegate = self
         pickerView.dataSource = self
         
-        print("in: \(UserDefaults.standard.integer(forKey: "round"))")
-        
-        if UserDefaults.standard.integer(forKey: "round") != 0 {
-            latestRound = UserDefaults.standard.integer(forKey: "round")
-        } else {
-            latestRound = 986
-        }
-        
         pickerViewArray = Array(0 ... latestRound)
         pickerViewArray.reverse()
-        
-        print("latestRound: \(latestRound)")
         
         setUp()
         
@@ -101,35 +97,61 @@ class ViewController: UIViewController {
         getDate()
     }
     
-    func getApi(roundNum: Int) -> Bool {
-        let url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(roundNum)"
+    func getApi(roundNum: Int) {
+        userDefaults.load(roundNum: roundNum)
+        print("lotto: \(userDefaults.lotto.latestRound)")
         
-        AF.request(url, method: .post).validate().responseJSON { response in
-            switch response.result {
-            case .success(let value):
-                let json = JSON(value)
-                // print("JSON: \(json)"
-                let drwNoDate = json["drwNoDate"].stringValue
-                let drwtNo6 = json["drwtNo6"].intValue
-                let drwtNo5 = json["drwtNo5"].intValue
-                let drwtNo4 = json["drwtNo4"].intValue
-                let drwtNo3 = json["drwtNo3"].intValue
-                let drwtNo2 = json["drwtNo2"].intValue
-                let drwtNo1 = json["drwtNo1"].intValue
-                let bonusNum = json["bnusNo"].intValue
-                let drwNo = json["drwNo"].intValue
-                
-                let data = Lotto(drwNoDate: drwNoDate, drwtNo: [drwtNo1, drwtNo2, drwtNo3, drwtNo4, drwtNo5, drwtNo6, bonusNum], drwNo: drwNo)
-                
-                print(data)
-                self.lottory = data
-                
-            case .failure(let error):
-                print(error)
+        if userDefaults.lotto.latestRound == 0 {
+            print("new Round")
+            let url = "https://www.dhlottery.co.kr/common.do?method=getLottoNumber&drwNo=\(roundNum)"
+            
+            AF.request(url, method: .post).validate().responseJSON { [ weak self ] response in // 메모리 누수 방지
+                switch response.result {
+                case .success(let value):
+                    let json = JSON(value)
+                    if json["returnValue"].stringValue == "success" {
+                        // print("JSON: \(json)"
+                        let drwNoDate = json["drwNoDate"].stringValue
+                        let drwtNo6 = json["drwtNo6"].intValue
+                        let drwtNo5 = json["drwtNo5"].intValue
+                        let drwtNo4 = json["drwtNo4"].intValue
+                        let drwtNo3 = json["drwtNo3"].intValue
+                        let drwtNo2 = json["drwtNo2"].intValue
+                        let drwtNo1 = json["drwtNo1"].intValue
+                        let bonusNum = json["bnusNo"].intValue
+                        let drwNo = json["drwNo"].intValue
+                        
+                        let data = Lotto(drwNoDate: drwNoDate, drwtNo: [drwtNo1, drwtNo2, drwtNo3, drwtNo4, drwtNo5, drwtNo6, bonusNum], drwNo: drwNo)
+                        
+                        print(data)
+                        self!.userDefaults.lotto = data
+                        
+                        self!.roundTextField.text = "\(self!.userDefaults.lotto.drwNo)"
+                        self!.dateLabel.text = "\(self!.userDefaults.lotto.drwNoDate)일자 추첨"
+                        self!.roundLabel.text = "\(self!.userDefaults.lotto.drwNo)회"
+                        
+                        for i in 0 ... 6 {
+                            self!.numberLabel[i].text = "\(self!.userDefaults.lotto.drwtNo[i])"
+                            self!.numberLabel[i].backgroundColor = self!.userDefaults.lotto.lottoColor(self!.userDefaults.lotto.drwtNo[i])
+                        }
+                    } else {
+                        // 회차가 없을경우 경고 토스트 메세지 띄우기
+                    }
+                case .failure(let error):
+                    print(error)
+                }
+            }
+            userDefaults.save(roundNum: roundNum)
+        } else {
+            roundTextField.text = "\(userDefaults.lotto.drwNo)"
+            dateLabel.text = "\(userDefaults.lotto.drwNoDate)일자 추첨"
+            roundLabel.text = "\(userDefaults.lotto.drwNo)회"
+            
+            for i in 0 ... 6 {
+                numberLabel[i].text = "\(userDefaults.lotto.drwtNo[i])"
+                numberLabel[i].backgroundColor = userDefaults.lotto.lottoColor(userDefaults.lotto.drwtNo[i])
             }
         }
-        
-        return true
     }
     
     func getDate() {
@@ -140,31 +162,15 @@ class ViewController: UIViewController {
         let result = current_date_string.components(separatedBy: " ")
         if result[1] == "Sat" {
             latestRound += 1
-            UserDefaults.standard.set(latestRound, forKey: "round")
+            getApi(roundNum: latestRound)
         } else {
             print(result)
         }
     }
     
-    func setLabel(roundNum: Int) {
-        getApi(roundNum: roundNum)
-        
-        roundTextField.text = "\(lottory.drwNo)"
-        dateLabel.text = "\(lottory.drwNoDate)일자 추첨"
-        roundLabel.text = "\(lottory.drwNo)회"
-        
-        let lotto = Lotto()
-        for i in 0 ... 6 {
-            numberLabel[i].text = "\(lottory.drwtNo[i])"
-            numberLabel[i].backgroundColor = lotto.lottoColor(lottory.drwtNo[i])
-        }
-        
-        // reload
-    }
-    
     @IBAction func roundInput(_ sender: UITextField) {
         if let num = Int(sender.text ?? "\(latestRound)") {
-            setLabel(roundNum: num)
+            getApi(roundNum: num)
         } else {
             // 경고 토스트 메세지 띄우기
         }
@@ -189,7 +195,7 @@ extension ViewController: UIPickerViewDelegate, UIPickerViewDataSource {
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         selectRow = latestRound - row
         print(selectRow)
-        setLabel(roundNum: selectRow)
+        getApi(roundNum: selectRow)
     }
     
 }

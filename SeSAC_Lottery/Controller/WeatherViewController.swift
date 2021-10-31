@@ -7,6 +7,7 @@
 
 import UIKit
 import CoreLocation
+import Kingfisher
 
 class WeatherViewController: UIViewController {
     
@@ -50,7 +51,7 @@ class WeatherViewController: UIViewController {
         
         findAddress(lat: lat, long: lon)
         
-        WeatherAPIManager.shared.getWeatherApiData(lat: lat, lon: lon) { code, json in
+        WeatherAPIManager.shared.getWeatherApiData(lat: lat, lon: lon) {code, json in
             switch code {
             case 200:
                 var temp = json["main"]["temp"].doubleValue
@@ -63,7 +64,12 @@ class WeatherViewController: UIViewController {
                 let wind = json["wind"]["speed"].doubleValue
                 self.windyLabel.text = "\(round((wind * 100) / 100))m/s의 바람이 불어요"
                 
-                let icon = json["weather"]["icon"].stringValue
+                // https://openweathermap.org/img/wn/10d@2x.png
+                let icon = json["weather"][0]["icon"].stringValue
+                print(json)
+                print("icon: \(icon)")
+                let imageURL = URL(string: "\(Endpoint.weatherImageURL)\(icon)@2x.png")
+                self.imageView.kf.setImage(with: imageURL)
                 
                 self.greetingLabel.text = "오늘도 행복한 하루 보내세요"
                 
@@ -147,6 +153,20 @@ extension WeatherViewController: CLLocationManagerDelegate {
     // 위도 경도 받아오기 에러
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
         print(error)
+    }
+}
+
+extension UIImageView {
+    func load(url: URL) {
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.image = image
+                    }
+                }
+            }
+        }
     }
 }
 

@@ -7,8 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		58433800272EE9A10030F0F2 /* UserDefaultsManager.swift.swift in Sources */ = {isa = PBXBuildFile; fileRef = 584337FF272EE9A10030F0F2 /* UserDefaultsManager.swift.swift */; };
 		5873D6BE27292B8100476A11 /* WeatherViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5873D6BD27292B8100476A11 /* WeatherViewController.swift */; };
-		5889EA152729305800046FD4 /* Constatnt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5889EA142729305800046FD4 /* Constatnt.swift */; };
+		5889EA152729305800046FD4 /* Constant.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5889EA142729305800046FD4 /* Constant.swift */; };
 		5889EA17272930BD00046FD4 /* WeatherAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5889EA16272930BD00046FD4 /* WeatherAPIManager.swift */; };
 		58A13E712726ADA900C0D092 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A13E702726ADA900C0D092 /* AppDelegate.swift */; };
 		58A13E732726ADA900C0D092 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58A13E722726ADA900C0D092 /* SceneDelegate.swift */; };
@@ -16,14 +17,18 @@
 		58A13E782726ADA900C0D092 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58A13E762726ADA900C0D092 /* Main.storyboard */; };
 		58A13E7A2726ADAA00C0D092 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 58A13E792726ADAA00C0D092 /* Assets.xcassets */; };
 		58A13E7D2726ADAA00C0D092 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 58A13E7B2726ADAA00C0D092 /* LaunchScreen.storyboard */; };
+		58B3487C27299A1700EABCE0 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 58B3487B27299A1700EABCE0 /* Kingfisher */; };
+		58B3487E27299BFC00EABCE0 /* KakaoOCRViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3487D27299BFC00EABCE0 /* KakaoOCRViewController.swift */; };
+		58B348802729A5A100EABCE0 /* KakaoOCRAPIManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58B3487F2729A5A100EABCE0 /* KakaoOCRAPIManager.swift */; };
 		58D3DC652727CFF800D178DB /* SwiftyJSON in Frameworks */ = {isa = PBXBuildFile; productRef = 58D3DC642727CFF800D178DB /* SwiftyJSON */; };
 		58D3DC682727D00000D178DB /* Alamofire in Frameworks */ = {isa = PBXBuildFile; productRef = 58D3DC672727D00000D178DB /* Alamofire */; };
 		58D3DC6A2727D3F400D178DB /* Lotto.swift in Sources */ = {isa = PBXBuildFile; fileRef = 58D3DC692727D3F400D178DB /* Lotto.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		584337FF272EE9A10030F0F2 /* UserDefaultsManager.swift.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaultsManager.swift.swift; sourceTree = "<group>"; };
 		5873D6BD27292B8100476A11 /* WeatherViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherViewController.swift; sourceTree = "<group>"; };
-		5889EA142729305800046FD4 /* Constatnt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constatnt.swift; sourceTree = "<group>"; };
+		5889EA142729305800046FD4 /* Constant.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constant.swift; sourceTree = "<group>"; };
 		5889EA16272930BD00046FD4 /* WeatherAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherAPIManager.swift; sourceTree = "<group>"; };
 		58A13E6D2726ADA900C0D092 /* SeSAC_Lottery.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SeSAC_Lottery.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		58A13E702726ADA900C0D092 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -33,6 +38,8 @@
 		58A13E792726ADAA00C0D092 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		58A13E7C2726ADAA00C0D092 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		58A13E7E2726ADAA00C0D092 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		58B3487D27299BFC00EABCE0 /* KakaoOCRViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoOCRViewController.swift; sourceTree = "<group>"; };
+		58B3487F2729A5A100EABCE0 /* KakaoOCRAPIManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KakaoOCRAPIManager.swift; sourceTree = "<group>"; };
 		58D3DC692727D3F400D178DB /* Lotto.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Lotto.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -41,6 +48,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				58B3487C27299A1700EABCE0 /* Kingfisher in Frameworks */,
 				58D3DC652727CFF800D178DB /* SwiftyJSON in Frameworks */,
 				58D3DC682727D00000D178DB /* Alamofire in Frameworks */,
 			);
@@ -54,6 +62,7 @@
 			children = (
 				5873D6BD27292B8100476A11 /* WeatherViewController.swift */,
 				58A13E742726ADA900C0D092 /* ViewController.swift */,
+				58B3487D27299BFC00EABCE0 /* KakaoOCRViewController.swift */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -93,8 +102,10 @@
 			isa = PBXGroup;
 			children = (
 				58D3DC692727D3F400D178DB /* Lotto.swift */,
-				5889EA142729305800046FD4 /* Constatnt.swift */,
+				584337FF272EE9A10030F0F2 /* UserDefaultsManager.swift.swift */,
+				5889EA142729305800046FD4 /* Constant.swift */,
 				5889EA16272930BD00046FD4 /* WeatherAPIManager.swift */,
+				58B3487F2729A5A100EABCE0 /* KakaoOCRAPIManager.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -118,6 +129,7 @@
 			packageProductDependencies = (
 				58D3DC642727CFF800D178DB /* SwiftyJSON */,
 				58D3DC672727D00000D178DB /* Alamofire */,
+				58B3487B27299A1700EABCE0 /* Kingfisher */,
 			);
 			productName = SeSAC_Lottery;
 			productReference = 58A13E6D2726ADA900C0D092 /* SeSAC_Lottery.app */;
@@ -150,6 +162,7 @@
 			packageReferences = (
 				58D3DC632727CFF800D178DB /* XCRemoteSwiftPackageReference "SwiftyJSON" */,
 				58D3DC662727D00000D178DB /* XCRemoteSwiftPackageReference "Alamofire" */,
+				58B3487A27299A1700EABCE0 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 58A13E6E2726ADA900C0D092 /* Products */;
 			projectDirPath = "";
@@ -179,12 +192,15 @@
 			buildActionMask = 2147483647;
 			files = (
 				58D3DC6A2727D3F400D178DB /* Lotto.swift in Sources */,
+				58B3487E27299BFC00EABCE0 /* KakaoOCRViewController.swift in Sources */,
 				5873D6BE27292B8100476A11 /* WeatherViewController.swift in Sources */,
+				58433800272EE9A10030F0F2 /* UserDefaultsManager.swift.swift in Sources */,
 				58A13E752726ADA900C0D092 /* ViewController.swift in Sources */,
 				5889EA17272930BD00046FD4 /* WeatherAPIManager.swift in Sources */,
 				58A13E712726ADA900C0D092 /* AppDelegate.swift in Sources */,
-				5889EA152729305800046FD4 /* Constatnt.swift in Sources */,
+				5889EA152729305800046FD4 /* Constant.swift in Sources */,
 				58A13E732726ADA900C0D092 /* SceneDelegate.swift in Sources */,
+				58B348802729A5A100EABCE0 /* KakaoOCRAPIManager.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -406,6 +422,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		58B3487A27299A1700EABCE0 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		58D3DC632727CFF800D178DB /* XCRemoteSwiftPackageReference "SwiftyJSON" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/SwiftyJSON/SwiftyJSON.git";
@@ -425,6 +449,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		58B3487B27299A1700EABCE0 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 58B3487A27299A1700EABCE0 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
 		58D3DC642727CFF800D178DB /* SwiftyJSON */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 58D3DC632727CFF800D178DB /* XCRemoteSwiftPackageReference "SwiftyJSON" */;

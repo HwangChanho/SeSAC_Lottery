@@ -8,10 +8,12 @@
 import Foundation
 import UIKit
 
-struct Lotto {
+struct Lotto : Codable {
     var drwNoDate: String = ""
     var drwtNo: [Int] = []
-    var drwNo: Int = 0 // 회차
+    var drwNo: Int = 0
+    
+    var latestRound = 0
     
     func lottoColor(_ num: Int) -> UIColor {
         switch num {
